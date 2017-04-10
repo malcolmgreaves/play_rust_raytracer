@@ -1,3 +1,14 @@
+[macro_use]
+extern crate serde_derive;
+extern crate image;
+extern crate serde;
+
+pub mod scene;
+pub mod vector;
+pub mod point;
+mod rendering;
+mod matrix;
+
 pub fn render(scene: &Scene) -> DynamicImage {
     DynamicImage::new_rgb8(scene.width, scene.height)
 }

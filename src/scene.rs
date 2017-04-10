@@ -1,3 +1,5 @@
+use point::Point;
+
 pub struct Color {
     pub red: f32,
     pub green: f32,
@@ -16,5 +18,3 @@ pub struct Scene {
     pub fov: f64,
     pub sphere: Sphere,
 }
-
-`
