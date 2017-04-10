@@ -16,3 +16,5 @@ pub struct Scene {
     pub fov: f64,
     pub sphere: Sphere,
 }
+
+`
