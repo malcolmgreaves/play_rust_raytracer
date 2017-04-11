@@ -6,8 +6,11 @@ extern crate serde;
 use image::DynamicImage;
 
 // doesn't work :(
-// pub fn curry(a: f64) -> impl Fn(f64) -> f64 {
-//     move |b| a + b;
+// pub fn curry<F>(a: f64) -> F
+//     where F: Fn(f64) -> f64
+// {
+//     let f = |b| a + b;
+//     Box<F>(f)
 // }
 
 pub fn hof<F>(a: i32, f: F) -> f64
