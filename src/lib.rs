@@ -3,15 +3,62 @@ extern crate serde_derive;
 extern crate image;
 extern crate serde;
 
-pub mod scene;
-pub mod point;
-
-use scene::Scene;
-
 use image::DynamicImage;
+
+
+#[derive(Copy, Clone, Debug, Deserialize)]
+#[repr(C)]
+pub struct Point {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+}
+
+pub struct Color {
+    pub red: f32,
+    pub green: f32,
+    pub blue: f32,
+}
+
+pub struct Sphere {
+    pub center: Point,
+    pub radius: f64,
+    pub color: Color,
+}
+
+pub struct Scene {
+    pub width: u32,
+    pub height: u32,
+    pub fov: f64,
+    pub sphere: Sphere,
+}
+
 
 pub fn render(scene: &Scene) -> DynamicImage {
     DynamicImage::new_rgb8(scene.width, scene.height)
+}
+
+
+pub struct Ray {
+    pub origin: Point,
+    pub direction: Vector3,
+}
+
+impl Ray {
+    pub fn create_prime(x: u32, y: u32, scene: &Scene) -> Ray {
+        let sensor_x = ((x as f64 + 0.5) / scene.width as f64) * 2.0 - 1.0;
+        let sensor_y = 1.0 - ((y as f64 + 0.5) / scene.height as f64) * 2.0;
+
+        Ray {
+            origin: Point::zero(),
+            direction: Vector3 {
+                    x: sensor_x,
+                    y: sensor_y,
+                    z: -1.0,
+                }
+                .normalize(),
+        }
+    }
 }
 
 #[test]
