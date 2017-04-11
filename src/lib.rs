@@ -5,6 +5,18 @@ extern crate serde;
 
 use image::DynamicImage;
 
+// doesn't work :(
+// pub fn curry(a: f64) -> impl Fn(f64) -> f64 {
+//     move |b| a + b;
+// }
+
+pub fn hof<F>(a: i32, f: F) -> f64
+    where F: Fn(f64) -> f64
+{
+    let input = a as f64;
+    f(input)
+}
+
 
 #[derive(Copy, Clone, Debug, Deserialize)]
 #[repr(C)]
