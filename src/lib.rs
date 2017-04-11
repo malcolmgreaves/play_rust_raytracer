@@ -63,6 +63,9 @@ pub fn render(scene: &Scene) -> DynamicImage {
 
 #[test]
 fn test_can_render_scene() {
+
+    use image::GenericImage;
+
     let scene = Scene {
         width: 800,
         height: 600,
